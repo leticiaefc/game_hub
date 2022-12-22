@@ -4,32 +4,44 @@
         static void Main(string[] args)
         {
             Console.WriteLine("#    Jogo da velha    #");          
-            TelaInicial();
-
+            
             List<string> nomes = new List<string>();
             List<string> score = new List<string>();
+            int escolha;            
             //contador de pontuação
             
             //histórico de partidas
             
+            do
+            {
+                TelaInicial();
+                escolha = int.Parse(Console.ReadLine());
+
+                if (escolha == 1)
+                {     
+                    Apresentar();           
+                    Jogo();
+                }
+                if (escolha == 2) 
+                {
+                Score();                
+                }
+                if (escolha == 3)
+                {
+                    Console.WriteLine("Até a próxima!");
+                }  
+
+            } while (escolha != 3);
+            
+
         }
         
         static void TelaInicial()
         {            
             Console.WriteLine("1 - jogar");
             Console.WriteLine("2 - ver os 10 melhores jogadores");
-            Console.WriteLine("Digite a opção desejada: ");
-            int escolha = int.Parse(Console.ReadLine());
-            Apresentar();
-            while (escolha == 1)
-            {                
-                Jogo();
-            }
-            if(escolha == 2)
-            {
-                Score();
-            } 
-            
+            Console.WriteLine("3 - Sair do Jogo");
+            Console.Write("Digite a opção desejada: ");
         }
         static void Apresentar() 
         {
@@ -43,11 +55,11 @@
 
         static void Score()
         {
-            
+            Console.WriteLine("Pontuação\n");
         }
         static void Jogo()
         {
-          
+          Console.WriteLine("oi");
           //opção para continuar o jogo ou retornar a tela inicial
         }
 
