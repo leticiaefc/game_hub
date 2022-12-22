@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "projeto_dois_ima_jogodavelha/1.0.0": {
+        "runtime": {
+          "projeto_dois_ima_jogodavelha.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "projeto_dois_ima_jogodavelha/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
