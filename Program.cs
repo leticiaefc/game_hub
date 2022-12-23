@@ -18,6 +18,7 @@
                 switch (escolha)
                 {
                     case 1:
+                        Console.Clear();
                         Apresentar();           
                         Jogo();
                         break;
@@ -43,12 +44,13 @@
         }
         static void Apresentar() 
         {
-            Console.WriteLine("_______________________");
+            Console.WriteLine("________________________");
             Console.Write("Escreva o nome Jogador 1 [X]: ");
             string j1 = Console.ReadLine();
+            Console.WriteLine("________________________");
             Console.Write("Escreva o nome Jogador 2 [O]: ");
             string j2 = Console.ReadLine();
-            Console.WriteLine("_______________________");
+            Console.Clear();
         }
 
         static void Score()
@@ -109,21 +111,24 @@
                         Console.Write($"[{matriz[i,j]}] ");
                     }
                     Console.WriteLine();
-                } // reescrevendo a matriz
+                } // imprimindo a matriz
 
                 if (matriz[0,0] == matriz[1,1] && matriz[0,0] == matriz[2,2] || matriz[0,2] == matriz[1,1] && matriz[0,2] == matriz[2,0]) //diagonais
                 {
                     Console.WriteLine($"\n{vez} venceu!\n"); 
+                    Pergunta();
                     break;
                 }   // diagonais
                 if (matriz[0,0] == matriz[0,1] && matriz[0,0] == matriz[0,2] || matriz[1,0] == matriz[1,1] && matriz[1,0] == matriz[1,2] || matriz[2,0] == matriz[2,1] && matriz[2,0] == matriz[2,2])
                 {
-                    Console.WriteLine($"\n{vez} venceu!\n"); 
+                    Console.WriteLine($"\n{vez} venceu!\n");
+                    Pergunta();
                     break;
                 } //horizontais
                 if (matriz[0,0] == matriz[1,0] && matriz[0,0] == matriz[2,0] || matriz[0,1] == matriz[1,1] && matriz[0,1] == matriz[2,1] || matriz[0,2] == matriz[1,2] && matriz[0,2] == matriz[2,2])
                 {
-                    Console.WriteLine($"\n{vez} venceu!\n"); 
+                    Console.WriteLine($"\n{vez} venceu!\n");
+                    Pergunta(); 
                     break;
                 } // verticais
                  
@@ -147,13 +152,25 @@
                 }
 
                 Console.Clear();
-                if (tentativas == 9) //consertar
+                if (tentativas == 9) 
                 {
-                    Console.WriteLine("\nDeu velha!\n");
-                    break;
+                    Console.WriteLine("\nDeu velha!\n");                    
+                    Pergunta();            
                 }   
 
             }
+        }
+
+        static void Pergunta()
+        { 
+            Console.WriteLine("Deseja jogar novamente?\n1-sim e 2- não");
+            int escolha = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            do
+            {
+                if (escolha == 1) { Jogo();}
+                
+            } while(escolha != 2);
         }
 
     }
