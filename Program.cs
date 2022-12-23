@@ -6,11 +6,8 @@
             Console.WriteLine("#    Jogo da velha    #\n");          
             
             List<string> nomes = new List<string>();
-            List<string> score = new List<string>();
-            
-            
-            //contador de pontuação            
-            //histórico de partidas
+            List<string> score = new List<string>();    
+            //histórico de partidas e contador de pontuação
             int escolha;            
             
             do
@@ -18,19 +15,19 @@
                 TelaInicial();
                 escolha = int.Parse(Console.ReadLine());
 
-                if (escolha == 1)
-                {     
-                    Apresentar();           
-                    Jogo();
-                }
-                if (escolha == 2) 
+                switch (escolha)
                 {
-                Score();                
-                }
-                if (escolha == 3)
-                {
-                    Console.WriteLine("Até a próxima!");
-                }  
+                    case 1:
+                        Apresentar();           
+                        Jogo();
+                        break;
+                    case 2:
+                        Score();
+                        break;
+                    case 3:
+                        Console.WriteLine("Até a próxima!");
+                        break;
+                }                
 
             } while (escolha != 3);
             
@@ -61,7 +58,7 @@
         static void Jogo()
         {
             string vez = "X";
-            int tentativas = 0;
+            int tentativas = 1;
             int soma = 1;
             List<string> indexNumeros = new List<string>();
 
@@ -90,7 +87,7 @@
 
             Console.Clear();
 
-            while(tentativas < 9) // percebi que se apertar sem colocar valores, a vez passa. Consertar!
+            while(tentativas < 9)
             {
                 
                 for( int i = 0; i < matriz.GetLength(0); i++){
@@ -128,8 +125,8 @@
                 {
                     Console.WriteLine($"\n{vez} venceu!\n"); 
                     break;
-                } // verticais     
-
+                } // verticais
+                 
                 if (vez == "X")
                 {
                     vez = "O";
@@ -150,6 +147,11 @@
                 }
 
                 Console.Clear();
+                if (tentativas == 9) //consertar
+                {
+                    Console.WriteLine("\nDeu velha!\n");
+                    break;
+                }   
 
             }
         }
