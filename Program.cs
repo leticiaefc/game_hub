@@ -23,7 +23,7 @@
                         Jogo();
                         break;
                     case 2:
-                        Score(nomes, score);
+                        Rank(nomes, score);
                         break;
                     case 3:
                         Console.WriteLine("Até a próxima!");
@@ -53,13 +53,25 @@
             Console.Clear();
         }
 
-        static void Score(List<string> nomes, List<int> score)
+        static void Rank(List<string> nomes, List<int> score)
         {            
-            for (int i = 0; i < nomes.Count; i++)
-            {                
-                Console.WriteLine($"{nomes}           {score}");
-                Console.WriteLine("----------------------------");
+            
+            foreach ( string jogadores in nomes) 
+            {
+                Console.WriteLine($" {jogadores}    vitórias:{Vitórias}    derrotas: {Derrotas}");
             }
+            
+        }
+
+        static int Vitórias(List<int> score)
+        {            
+            int vitórias = 0;            
+            return vitórias;
+        }
+        static int Derrotas(List<int> score)
+        {
+            int derrotas =0;
+            return derrotas;
         }
         static void Jogo()
         {

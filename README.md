@@ -6,4 +6,3 @@ In this game, two people, who play alternately, filling each of the spaces with 
 ## Rules
 * The first person to form a line with three identical symbols wins, whether horizontally, vertically or diagonally.
 * If neither player succeeds, it is considered a tie.
-
