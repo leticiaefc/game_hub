@@ -6,7 +6,7 @@
             Console.WriteLine("#    Jogo da velha    #\n");          
             
             List<string> nomes = new List<string>();
-            List<string> score = new List<string>();    
+            List<int> score = new List<int>();    
             //histórico de partidas e contador de pontuação
             int escolha;            
             
@@ -19,11 +19,11 @@
                 {
                     case 1:
                         Console.Clear();
-                        Apresentar();           
+                        Apresentar(nomes);           
                         Jogo();
                         break;
                     case 2:
-                        Score();
+                        Score(nomes, score);
                         break;
                     case 3:
                         Console.WriteLine("Até a próxima!");
@@ -42,30 +42,33 @@
             Console.WriteLine("3 - Sair do Jogo");
             Console.Write("Digite a opção desejada: ");
         }
-        static void Apresentar() 
+        static void Apresentar(List<string> nomes) 
         {
             Console.WriteLine("________________________");
             Console.Write("Escreva o nome Jogador 1 [X]: ");
-            string j1 = Console.ReadLine();
+            nomes.Add(Console.ReadLine());            
             Console.WriteLine("________________________");
             Console.Write("Escreva o nome Jogador 2 [O]: ");
-            string j2 = Console.ReadLine();
+            nomes.Add(Console.ReadLine());  
             Console.Clear();
         }
 
-        static void Score()
-        {
-            Console.WriteLine("Pontuação\n");
+        static void Score(List<string> nomes, List<int> score)
+        {            
+            for (int i = 0; i < nomes.Count; i++)
+            {                
+                Console.WriteLine($"{nomes}           {score}");
+                Console.WriteLine("----------------------------");
+            }
         }
         static void Jogo()
         {
             string vez = "X";
             int tentativas = 1;
             int soma = 1;
-            List<string> indexNumeros = new List<string>();
+            List<string> indexNumeros = new List<string>();            
+            string[,] matriz = new string[3,3]; 
 
-
-          string[,] matriz = new string[3,3]; 
             for (int i = 0; i < matriz.GetLength(0); i++)
             {
                 for (int j =0; j < matriz.GetLength(1); j++)
@@ -164,13 +167,16 @@
         static void Pergunta()
         { 
             Console.WriteLine("Deseja jogar novamente?\n1-sim e 2- não");
-            int escolha = int.Parse(Console.ReadLine());
+            string escolha = Console.ReadLine();
             Console.WriteLine();
+            List<string> loop = new List<string>();
             do
-            {
-                if (escolha == 1) { Jogo();}
-                
-            } while(escolha != 2);
+            {   
+                loop.Add(escolha);
+                if (escolha == "1") { Jogo();}                
+                if (escolha == "2") { break;}
+
+            } while(!loop.Contains(escolha)); //quero que funcione a pergunta continue até a pessoa digitar uma das duas escolhas
         }
 
     }
