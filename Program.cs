@@ -1,4 +1,7 @@
-﻿namespace JogoDaVelha {
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace JogoDaVelha {
     public class Program {
                 
         static void Main(string[] args)
@@ -6,10 +9,10 @@
             Console.WriteLine("#    Jogo da velha    #\n");          
             
             List<string> nomes = new List<string>();
-            List<int> score = new List<int>();    
-            //histórico de partidas e contador de pontuação
+            List<int> win = new List<int>(); 
+            List<int> lose = new List<int>();                   
             int escolha;            
-            
+
             do
             {
                 TelaInicial();
@@ -20,10 +23,10 @@
                     case 1:
                         Console.Clear();
                         Apresentar(nomes);           
-                        Jogo();
+                        Jogo(win, nomes);
                         break;
                     case 2:
-                        Rank(nomes, score);
+                        Rank(nomes, win, lose);
                         break;
                     case 3:
                         Console.WriteLine("Até a próxima!");
@@ -38,49 +41,40 @@
         static void TelaInicial()
         {            
             Console.WriteLine("1 - jogar");
-            Console.WriteLine("2 - ver os 10 melhores jogadores");
+            Console.WriteLine("2 - ver o ranking");
             Console.WriteLine("3 - Sair do Jogo");
-            Console.Write("Digite a opção desejada: ");
+            Console.Write("Digite a opção desejada: ");            
         }
         static void Apresentar(List<string> nomes) 
         {
             Console.WriteLine("________________________");
             Console.Write("Escreva o nome Jogador 1 [X]: ");
-            nomes.Add(Console.ReadLine());            
+            nomes.Add(Console.ReadLine()); 
             Console.WriteLine("________________________");
             Console.Write("Escreva o nome Jogador 2 [O]: ");
-            nomes.Add(Console.ReadLine());  
-            Console.Clear();
+            nomes.Add(Console.ReadLine());            
         }
 
-        static void Rank(List<string> nomes, List<int> score)
+        static void Rank(List<string> nomes, List<int> win, List<int> lose)
         {            
-            
-            foreach ( string jogadores in nomes) 
+            Console.WriteLine();
+            foreach( string jogadores in nomes) 
             {
-                Console.WriteLine($" {jogadores}    vitórias:{Vitórias}    derrotas: {Derrotas}");
+                Console.WriteLine($"{jogadores}");
             }
+            Console.WriteLine();
             
         }
-
-        static int Vitórias(List<int> score)
-        {            
-            int vitórias = 0;            
-            return vitórias;
-        }
-        static int Derrotas(List<int> score)
+        static void Jogo(List<int> win, List<string> nomes)
         {
-            int derrotas =0;
-            return derrotas;
-        }
-        static void Jogo()
-        {
-            string vez = "X";
+            string simbolo = "X";
             int tentativas = 1;
             int soma = 1;
             List<string> indexNumeros = new List<string>();            
             string[,] matriz = new string[3,3]; 
-
+            List<int> indexJogador = new List<int>();
+            
+            
             for (int i = 0; i < matriz.GetLength(0); i++)
             {
                 for (int j =0; j < matriz.GetLength(1); j++)
@@ -99,7 +93,7 @@
                 }
                 Console.WriteLine();
             }
-            Console.Write($"\nVez de {vez}. Qual a posição? ");
+            Console.Write($"\nVez de {simbolo}. Qual a posição? ");
             string jogada = Console.ReadLine();
 
             Console.Clear();
@@ -112,7 +106,7 @@
 
                         if (matriz[i,j] == jogada && indexNumeros.Contains(jogada)){
 
-                            matriz[i,j] = vez;
+                            matriz[i,j] = simbolo;
                             indexNumeros.Remove(jogada);
                         }
 
@@ -130,33 +124,33 @@
 
                 if (matriz[0,0] == matriz[1,1] && matriz[0,0] == matriz[2,2] || matriz[0,2] == matriz[1,1] && matriz[0,2] == matriz[2,0]) //diagonais
                 {
-                    Console.WriteLine($"\n{vez} venceu!\n"); 
-                    Pergunta();
+                    Console.WriteLine($"\n{simbolo} venceu!\n");                        
+                    Pergunta(win, nomes );
                     break;
                 }   // diagonais
                 if (matriz[0,0] == matriz[0,1] && matriz[0,0] == matriz[0,2] || matriz[1,0] == matriz[1,1] && matriz[1,0] == matriz[1,2] || matriz[2,0] == matriz[2,1] && matriz[2,0] == matriz[2,2])
                 {
-                    Console.WriteLine($"\n{vez} venceu!\n");
-                    Pergunta();
+                    Console.WriteLine($"\n{simbolo} venceu!\n");
+                    Pergunta(win, nomes);
                     break;
                 } //horizontais
                 if (matriz[0,0] == matriz[1,0] && matriz[0,0] == matriz[2,0] || matriz[0,1] == matriz[1,1] && matriz[0,1] == matriz[2,1] || matriz[0,2] == matriz[1,2] && matriz[0,2] == matriz[2,2])
                 {
-                    Console.WriteLine($"\n{vez} venceu!\n");
-                    Pergunta(); 
+                    Console.WriteLine($"\n{simbolo} venceu!\n");
+                    Pergunta(win, nomes); 
                     break;
                 } // verticais
                  
-                if (vez == "X")
+                if (simbolo == "X")
                 {
-                    vez = "O";
+                    simbolo = "O";
                 }
                 else
                 {
-                    vez = "X";
+                    simbolo = "X";
                 }              
 
-                Console.Write($"\nVez de {vez}. Qual a posição? ");
+                Console.Write($"\nVez de {simbolo}. Qual a posição? ");
                 jogada = Console.ReadLine();
                 tentativas++;
                 
@@ -170,13 +164,12 @@
                 if (tentativas == 9) 
                 {
                     Console.WriteLine("\nDeu velha!\n");                    
-                    Pergunta();            
-                }   
+                    Pergunta(win, nomes);            
+                }                 
 
             }
         }
-
-        static void Pergunta()
+        static void Pergunta(List<int> win, List<string> names)
         { 
             Console.WriteLine("Deseja jogar novamente?\n1-sim e 2- não");
             string escolha = Console.ReadLine();
@@ -185,7 +178,7 @@
             do
             {   
                 loop.Add(escolha);
-                if (escolha == "1") { Jogo();}                
+                if (escolha == "1") { Jogo(win, names);}                
                 if (escolha == "2") { break;}
 
             } while(!loop.Contains(escolha)); //quero que funcione a pergunta continue até a pessoa digitar uma das duas escolhas
