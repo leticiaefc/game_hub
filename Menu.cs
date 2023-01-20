@@ -1,15 +1,13 @@
-
+using System.Collections;
 using JogoDaVelha;
 
 public class Menu
-    {
-        int escolha;
-
-    public List<Jogadores> ListaJogadores { get; set; }
-    public List<int> Win { get; private set; }
-    public List<int> Lose { get; private set; }
-
-    public static void Tela(List<int> win, List<int> lose, List<JogoDaVelha.Jogadores> _listaJogadores)
+    {         
+    private List<Jogador> _listaJogadores; 
+    public Menu(){
+        _listaJogadores = new List<Jogador>();
+    }
+    public void Tela()
         {
             int escolha;
             do
@@ -21,11 +19,13 @@ public class Menu
                 {
                     case 1:
                         Console.Clear();
-                        Apresentar(_listaJogadores);           
-                        Game.Jogo(win, _listaJogadores);
+                        Apresentar();           
+                        //Game.Jogo();
+                        Game jogo = new Game();
+                        Game.Jogo(Jogador jogador1, Jogador jogador2);
                         break;
                     case 2:
-                        Rank(win, lose, _listaJogadores);
+                        Rank(_listaJogadores);
                         break;
                     case 3:
                         Console.WriteLine("\n Até a próxima!");
@@ -35,47 +35,42 @@ public class Menu
             } while (escolha != 3);
         }
 
-    public Menu(List<Jogadores> listaJogadores, List<int> win, List<int> lose)
-    {
-        ListaJogadores = listaJogadores;
-        Win = win;
-        Lose = lose;
-    }
 
-    static void TelaInicial()
+    private void TelaInicial()
         {            
             Console.WriteLine("1 - jogar");
             Console.WriteLine("2 - ver o ranking");
             Console.WriteLine("3 - Sair do Jogo");
             Console.Write("Digite a opção desejada: ");            
         }
-
-        static void Apresentar(List<JogoDaVelha.Jogadores> _listadeJogadores) 
+        private void Apresentar()
         {
             Console.WriteLine("________________________");
             Console.Write("Escreva o nome Jogador 1 [X]: ");
-            Jogadores jogador1 = new Jogadores();
+            Jogador jogador1 = new Jogador();
             jogador1.Nome = Console.ReadLine();
-            _listadeJogadores.Add(jogador1);
-            //nomes.Add(Console.ReadLine()); 
+            _listaJogadores.Add(jogador1);
             Console.WriteLine("________________________");
             Console.Write("Escreva o nome Jogador 2 [O]: ");
-            //nomes.Add(Console.ReadLine());            
-            Jogadores jogador2 = new Jogadores();
+            Jogador jogador2 = new Jogador(); 
             jogador2.Nome = Console.ReadLine();
-            _listadeJogadores.Add(jogador2);          
+            _listaJogadores.Add(jogador2); 
+        }
+        
+        static void Rank(List<Jogador> _listaJogadores)
+        {    
+            //List<int> win;
+            //List<int> lose;            
+            Console.Clear();
+            Console.WriteLine("Nome - vitórias - derrotas - empates\n");
+
+            _listaJogadores = _listaJogadores.OrderByDescending(x => x.Win).ToList();
+            foreach (var jogador in _listaJogadores)
+            {
+                Console.WriteLine(jogador.Nome + "   " + jogador.Win + " : " + jogador.Lose + " : " + jogador.Draw);
+            }
+            
+            Console.WriteLine();      
         }
 
-        static void Rank( List<int> win, List<int> lose, List<JogoDaVelha.Jogadores> _listaJogadores)
-        {            
-            Console.WriteLine();
-        System.Collections.IList list = _listaJogadores;
-        for (int i = 0; i < list.Count; i++) 
-            {
-            string jogadores = (string)list[i];
-            Console.WriteLine($"{jogadores}");
-            }
-            Console.WriteLine();      
-        } 
-
-    }
+}

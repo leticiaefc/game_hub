@@ -3,7 +3,8 @@ using JogoDaVelha;
 
 public class Game
 {
-        public static void Jogo(List<int> win, List<JogoDaVelha.Jogadores> _listaJogadores)
+    
+        public static void Jogo(Jogador jogador1, Jogador jogador2)
         {
             string simbolo = "X";
             int tentativas = 1;
@@ -62,20 +63,23 @@ public class Game
 
                 if (matriz[0,0] == matriz[1,1] && matriz[0,0] == matriz[2,2] || matriz[0,2] == matriz[1,1] && matriz[0,2] == matriz[2,0]) //diagonais
                 {
-                    Console.WriteLine($"\n{simbolo} venceu!\n");                     
-                    Pergunta(win, _listaJogadores);
+                    Console.WriteLine($"\n{simbolo} venceu!\n");
+                    ContadorPontuacao(jogador1, jogador2, simbolo);
+                    Pergunta(jogador1, jogador2);
                     break;
                 }   // diagonais
                 if (matriz[0,0] == matriz[0,1] && matriz[0,0] == matriz[0,2] || matriz[1,0] == matriz[1,1] && matriz[1,0] == matriz[1,2] || matriz[2,0] == matriz[2,1] && matriz[2,0] == matriz[2,2])
                 {
                     Console.WriteLine($"\n{simbolo} venceu!\n");
-                    Pergunta(win, _listaJogadores);
+                    ContadorPontuacao(jogador1, jogador2, simbolo);
+                    Pergunta(jogador1, jogador2);
                     break;
                 } //horizontais
                 if (matriz[0,0] == matriz[1,0] && matriz[0,0] == matriz[2,0] || matriz[0,1] == matriz[1,1] && matriz[0,1] == matriz[2,1] || matriz[0,2] == matriz[1,2] && matriz[0,2] == matriz[2,2])
                 {
                     Console.WriteLine($"\n{simbolo} venceu!\n");
-                    Pergunta(win, _listaJogadores); 
+                    ContadorPontuacao(jogador1, jogador2, simbolo);
+                    Pergunta(jogador1, jogador2); 
                     break;
                 } // verticais
                  
@@ -101,14 +105,28 @@ public class Game
                 Console.Clear();
                 if (tentativas == 9) 
                 {
-                    Console.WriteLine("\nDeu velha!\n");                    
-                    Pergunta(win,  _listaJogadores);            
+                    Console.WriteLine("\nDeu velha!\n");
+                    jogador1.AddEmpate();
+                    jogador2.AddEmpate();
+                    Pergunta(jogador1, jogador2);            
                 }                 
 
             }
         }
+        private static void ContadorPontuacao(Jogador jogador1, Jogador jogador2, string simbolo)
+        {
+            if(simbolo == "X") { 
+                        jogador1.AddVitoria();
+                        jogador2.AddDerrota();
+                    }                                        
+                    else
+                    { 
+                        jogador2.AddVitoria();
+                        jogador1.AddDerrota();
+                    }
+        }
 
-         static void Pergunta(List<int> win, List<JogoDaVelha.Jogadores> _listaJogadores)
+         static void Pergunta(Jogador jogador1, Jogador jogador2)
         { 
             Console.WriteLine("Deseja jogar novamente?\n1-sim e 2- não");
             string escolha = Console.ReadLine();
@@ -117,7 +135,7 @@ public class Game
             do
             {   
                 loop.Add(escolha);
-                if (escolha == "1") { Jogo(win, _listaJogadores);}                
+                if (escolha == "1") { Jogo(jogador1, jogador2);}                
                 if (escolha == "2") { break;}
 
             } while(!loop.Contains(escolha)); //quero que funcione a pergunta continue até a pessoa digitar uma das duas escolhas
