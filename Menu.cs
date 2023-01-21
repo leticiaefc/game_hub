@@ -1,5 +1,5 @@
 using System.Collections;
-using JogoDaVelha;
+using GameHub;
 
 public class Menu
     {         
@@ -12,55 +12,84 @@ public class Menu
             int escolha;
             do
             {
-                TelaInicial();
+                TeladeCadastroeLogin();
+                TeladeMenu();
                 escolha = int.Parse(Console.ReadLine());
 
                 switch (escolha)
                 {
                     case 1:
                         Console.Clear();
-                        Apresentar();           
+                        Console.WriteLine("#    Jogo da velha    #\n"); 
                         //Game.Jogo();
-                        Game jogo = new Game();
-                        Game.Jogo(Jogador jogador1, Jogador jogador2);
                         break;
                     case 2:
-                        Rank(_listaJogadores);
+                        // implementar outro jogo
                         break;
                     case 3:
+                        Rank(_listaJogadores);
+                        break;
+                    case 4:
                         Console.WriteLine("\n Até a próxima!");
                         break;
                 }                
 
-            } while (escolha != 3);
+            } while (escolha != 4);
         }
-
-
-    private void TelaInicial()
+        private void TeladeCadastroeLogin() 
+        { int escolha;
+            Console.WriteLine("|tBem vindos ao GameHub!");
+            Console.WriteLine("\nJogador1, você é um novo usuário ou deseja realizar login?\n1 - Cadastro\n2 - Login");
+            escolha = int.Parse(Console.ReadLine());
+            while(escolha != 1 && escolha != 2)
+            {
+                Console.WriteLine("Opção inválida, digite novamente");
+                escolha = int.Parse(Console.ReadLine());
+            }
+            if (escolha == 1)
+            {
+                Console.Write("Digite o nome de usuário que deseja ser conhecido: ");
+                Jogador jogador1 = new Jogador(); // jogador 1 será sempre o X no jogo da velha
+                jogador1.Nome = Console.ReadLine();
+                _listaJogadores.Add(jogador1);
+            }
+            else 
+            {
+                Console.WriteLine("Digite o nome de usuário registrado no sistema: ");                 
+            }
+            Console.Clear();  
+            Console.WriteLine("E quanto a você Jogador2?");
+            Console.WriteLine("1 - Cadastro\n2 - Login");
+            escolha = int.Parse(Console.ReadLine());
+            while(escolha != 1 && escolha != 2)
+            {
+                Console.WriteLine("Opção inválida, digite novamente");
+                escolha = int.Parse(Console.ReadLine());
+            }
+            if (escolha == 1)
+            {
+                Console.Write("Digite o nome de usuário que deseja ser conhecido: ");
+                Jogador jogador2 = new Jogador(); 
+                jogador2.Nome = Console.ReadLine();
+                _listaJogadores.Add(jogador2);
+            }
+            else 
+            {
+                Console.WriteLine("Digite o nome de usuário registrado no sistema: ");                 
+            }
+            Console.Clear();
+        }
+        private void TeladeMenu()
         {            
-            Console.WriteLine("1 - jogar");
-            Console.WriteLine("2 - ver o ranking");
-            Console.WriteLine("3 - Sair do Jogo");
+            Console.WriteLine("1 - jogo da velha");
+            Console.WriteLine("2 - outro jogo");
+            Console.WriteLine("3 - ver o ranking");
+            Console.WriteLine("4 - Sair do Jogo");
             Console.Write("Digite a opção desejada: ");            
-        }
-        private void Apresentar()
-        {
-            Console.WriteLine("________________________");
-            Console.Write("Escreva o nome Jogador 1 [X]: ");
-            Jogador jogador1 = new Jogador();
-            jogador1.Nome = Console.ReadLine();
-            _listaJogadores.Add(jogador1);
-            Console.WriteLine("________________________");
-            Console.Write("Escreva o nome Jogador 2 [O]: ");
-            Jogador jogador2 = new Jogador(); 
-            jogador2.Nome = Console.ReadLine();
-            _listaJogadores.Add(jogador2); 
         }
         
         static void Rank(List<Jogador> _listaJogadores)
-        {    
-            //List<int> win;
-            //List<int> lose;            
+        {           
             Console.Clear();
             Console.WriteLine("Nome - vitórias - derrotas - empates\n");
 

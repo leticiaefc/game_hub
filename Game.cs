@@ -1,5 +1,5 @@
 
-using JogoDaVelha;
+using GameHub;
 
 public class Game
 {

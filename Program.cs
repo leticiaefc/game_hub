@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace JogoDaVelha {
+namespace GameHub {
     public class Program {
 
         public static void Main(string[] args)
-        {            
-            Console.WriteLine("#    Jogo da velha    #\n"); 
+        {   
+            //criar um hub com opção de entrar no jogo da velha ou outro
 
             Menu menu = new Menu();
             menu.Tela();                          

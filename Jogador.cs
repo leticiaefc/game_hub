@@ -1,4 +1,4 @@
-namespace JogoDaVelha
+namespace GameHub
 {
     public class Jogador 
     {        
