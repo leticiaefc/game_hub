@@ -4,7 +4,7 @@ using GameHub;
 public class Game
 {
     
-        public static void Jogo(Jogador jogador1, Jogador jogador2)
+        public void Jogo(Jogador jogador1, Jogador jogador2)
         {
             string simbolo = "X";
             int tentativas = 1;
@@ -113,7 +113,8 @@ public class Game
 
             }
         }
-        private static void ContadorPontuacao(Jogador jogador1, Jogador jogador2, string simbolo)
+
+    private static void ContadorPontuacao(Jogador jogador1, Jogador jogador2, string simbolo)
         {
             if(simbolo == "X") { 
                         jogador1.AddVitoria();
@@ -126,7 +127,7 @@ public class Game
                     }
         }
 
-         static void Pergunta(Jogador jogador1, Jogador jogador2)
+         private void Pergunta(Jogador jogador1, Jogador jogador2)
         { 
             Console.WriteLine("Deseja jogar novamente?\n1-sim e 2- não");
             string escolha = Console.ReadLine();

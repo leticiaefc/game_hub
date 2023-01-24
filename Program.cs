@@ -6,10 +6,12 @@ namespace GameHub {
 
         public static void Main(string[] args)
         {   
-            //criar um hub com opção de entrar no jogo da velha ou outro
-
+            string rootPath = @"C:\Aula\projeto_dois_ima_jogodavelha\projeto_dois_ima_jogodavelha\";
+            string filePath = rootPath + "gameHub.txt";
+            File.Create(filePath);
+            // consertar a maneira que o hubtela é instanciado, pois está repetindo
             Menu menu = new Menu();
-            menu.Tela();                          
+            menu.Tela();                 
         } 
 
     }
