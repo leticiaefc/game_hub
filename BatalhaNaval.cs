@@ -1,8 +1,8 @@
 using GameHub;
 
-public class BatalhaNaval
+public static class BatalhaNaval
 {
-    public void JogoBatalha()
+    public static void JogoBatalha(Jogador jogador1, Jogador jogador2)
     {
         
     }

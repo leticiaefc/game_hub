@@ -4,7 +4,9 @@ using GameHub;
 public class Menu : Jogador
     {         
     private List<Jogador> _listaJogadores; 
-    private List<string> senha;
+    private List<string> _senha;
+    private  Jogador? _jogador1;
+    private  Jogador? _jogador2;
     public Menu(){
         _listaJogadores = new List<Jogador>();
     }
@@ -16,19 +18,19 @@ public class Menu : Jogador
             {                
                 TeladeMenu();
                 escolha = int.Parse(Console.ReadLine());
-
+                Console.Clear();
                 switch (escolha)
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("#    Jogo da velha    #\n");
-                        //Game.Jogo();
+                        Console.WriteLine("#    JogodaVelha da velha    #\n");
+                        TicTacToe.JogodaVelha(_jogador1, _jogador2);
                         break;
                     case 2:                    
-                        //Forca.JogodaForca();                     
+                        Forca.JogodaForca(_jogador1, _jogador2);                     
                         break;
                     case 3:
-                        //BatalhaNaval.JogoBatalha();
+                        BatalhaNaval.JogoBatalha(_jogador1, _jogador2);
                         break;
                     case 4:
                         Rank(_listaJogadores);
@@ -59,17 +61,24 @@ public class Menu : Jogador
                 Console.WriteLine("Por favor, digite a senha:");
                 jogador1.Password = Console.ReadLine();
                 string senhaArmazenada = jogador1.Password;
-                VerificarSenha(senhaArmazenada);
+                //_senha(senhaArmazenada);
                 Console.WriteLine("Senha salva com sucesso!");
             }
             else 
             {
                 Console.WriteLine("Digite o nome de usuário registrado no sistema: ");
-                string nome = Console.ReadLine();
-                VerificarNome(nome);
+                string nome = Console.ReadLine();                
                 Console.WriteLine("Digite a senha");
                 string senha = Console.ReadLine();
-                VerificarSenha(senha);
+
+                foreach( Jogador player in _listaJogadores)
+                {
+                    if (player.VerificarConta(nome, senha))
+                    {
+                        _jogador1 = player;
+                    }
+
+                }
             }
             Console.Clear();  
             Console.WriteLine("E quanto a você Jogador2?");
@@ -89,17 +98,24 @@ public class Menu : Jogador
                 Console.WriteLine("Por favor, digite a senha:");
                 jogador2.Password = Console.ReadLine();
                 string senhaArmazenada = jogador2.Password;
-                VerificarSenha(senhaArmazenada);
+                //_senha(senhaArmazenada);
                 Console.WriteLine("Senha salva com sucesso!");                
             }
             else 
             {
                 Console.WriteLine("Digite o nome de usuário registrado no sistema: ");
-                string nome = Console.ReadLine();
-                VerificarNome(nome);
+                string nome = Console.ReadLine();                
                 Console.WriteLine("Digite a senha");
                 string senha = Console.ReadLine();
-                VerificarSenha(senha);
+
+                foreach( Jogador player in _listaJogadores)
+                {
+                    if (player.VerificarConta(nome, senha))
+                    {
+                        _jogador1 = player;
+                    }
+
+                }
             }
             Console.Clear();
         }

@@ -1,10 +1,10 @@
 
 using GameHub;
 
-public class Game
+public static class TicTacToe
 {
     
-        public void Jogo(Jogador jogador1, Jogador jogador2)
+        public static void JogodaVelha(Jogador jogador1, Jogador jogador2)
         {
             string simbolo = "X";
             int tentativas = 1;
@@ -127,7 +127,7 @@ public class Game
                     }
         }
 
-         private void Pergunta(Jogador jogador1, Jogador jogador2)
+         private static void Pergunta(Jogador jogador1, Jogador jogador2)
         { 
             Console.WriteLine("Deseja jogar novamente?\n1-sim e 2- não");
             string escolha = Console.ReadLine();
@@ -136,7 +136,7 @@ public class Game
             do
             {   
                 loop.Add(escolha);
-                if (escolha == "1") { Jogo(jogador1, jogador2);}                
+                if (escolha == "1") { JogodaVelha(jogador1, jogador2);}                
                 if (escolha == "2") { break;}
 
             } while(!loop.Contains(escolha)); //quero que funcione a pergunta continue até a pessoa digitar uma das duas escolhas

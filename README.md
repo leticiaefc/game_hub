@@ -14,3 +14,10 @@ In this game, two people, who play alternately, filling each of the spaces with 
 # FORK
 //write about
 //write the rules
+
+## Rules
+//description
+
+# Battleship
+
+## Rules
