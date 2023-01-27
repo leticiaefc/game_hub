@@ -9,7 +9,7 @@ namespace GameHub {
             //string arquivoJson =
             // consertar a maneira que o hubtela é instanciado, pois está repetindo
             Menu menu = new Menu();
-            menu.Tela();                 
+            menu.Tela();             
         } 
 
     }

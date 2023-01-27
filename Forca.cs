@@ -5,17 +5,19 @@ public static class Forca
     public static void JogodaForca(Jogador jogador1, Jogador jogador2)
     {
         string palavra;
-        int acertos = 0;
-        int erros = 0;
-
-        Console.WriteLine("Digite uma palavra");
+        
+        Tema();
         palavra = Console.ReadLine();
+
+        List<char> palavrasAdivinhadas = new List<char>();
 
         char[] letras = palavra.ToCharArray();
         char[] forca = palavra.ToCharArray();
         char[] digitados = palavra.ToCharArray();
         char digitos;
         int tentativasRestantes = 8;
+        int acertos = 0;
+        int tentativasErradas = 0;    
 
             for (int i = 0; i < palavra.Length; i++)
             {
@@ -28,136 +30,71 @@ public static class Forca
                     forca[i] = '_';
                 }
             }
+                
+        do {
             Console.Clear();
-
-            do
-            {
-
-                Console.Write(" ________\n" +
-                                     "|        |\n" +
-                                     "|        |\n" +
-                                     "|\n" +
-                                     "|\n" +
-                                     "|\n" +
-                                     "|\n" +
-                                     "|\n" +
-                                     "|\n\n");
-
-
-
-            Console.SetCursorPosition(2, Console.CursorTop - 2);
 
                 for (int i = 0; i < palavra.Length; i++)
                 {
                     Console.Write(forca[i] + " ");
                 }
 
-            Console.WriteLine("\n\n\nDigite uma letra");
-            digitos = Convert.ToChar(Console.Read());
             Console.WriteLine($"Tentativas restantes: {tentativasRestantes}");
-                for (int i = 0; i < palavra.Length; i++)
+            Console.WriteLine("\n\n\nDigite uma letra");
+            digitos = Console.ReadLine()[0];
+
+                if (!char.IsLetter(digitos))
                 {
-
-                    if (digitos == forca[i])
-                    {
-                        Console.WriteLine("\nLetra já digitada");
-                    }
-
-                    else if (digitos == letras[i])
-                    {
-                        forca[i] = digitos;
-                        acertos++;
-                    }
-
-                   else if(digitos != forca[i])
-                    {
-                        Console.WriteLine("Letra não existe na palavra");
-                        erros++;
-                        tentativasRestantes--;
-                    }
-                    else if(acertos == palavra.Length)
-                    {
-                        Console.WriteLine("Você venceu");
-                    }
+                    Console.WriteLine("Letra inválida");
+                    continue;
                 }
 
-                Console.Clear();
+                if (palavrasAdivinhadas.Contains(digitos)) 
+                {
+                Console.WriteLine("\nLetra já digitada");
+                continue;
+                }
 
-            } while (erros < 8);
-            Console.Clear();
-            Console.WriteLine("Você perdeu");
-        // Tema();
-        // string palavra = Console.ReadLine();
-        // string[] palavraemArray = new string[palavra.Length];
-        // int tentativasRestantes = 8;
-        // int erros =0, verifica=0;
-        // Console.Clear();
+                if(palavra.Contains(digitos)) {
+                    for (int i = 0; i < palavra.Length; i++)
+                    {
+                        if (letras[i] == digitos)
+                        {
+                        forca[i] = digitos;
+                        }
+                        acertos++;
+                        if(acertos == palavra.Length)
+                        {
+                        Console.Clear();
+                        Console.WriteLine("\n Você venceu!\n");
+                        break;
+                        }
 
-        // Console.WriteLine($"Tentativas restantes: {tentativasRestantes}");
-        // Console.Write("Informe uma letra: ");
-
-        // while(erros != 8 && verifica != palavraemArray.Length)
-        // {            
-        //     char letra = char.Parse(Console.ReadLine());
-
-        //     int verificaLetras = palavra.IndexOf(letra);
-        //     if(verificaLetras == -1)
-        //     {
-        //         erros++;
-        //         tentativasRestantes--;
-        //     }
-        //     else
-        //     {
-        //         for(int i = 0; i < palavra.Length; i++)
-        //         {
-        //             if(palavra[i].ToString() == letra.ToString());
-        //             {
-        //                 palavraemArray[i] = letra.ToString();
-                        
-        //                 if(palavraemArray[i] != null && palavraemArray[i] != "_ ")
-        //                 {
-        //                     verifica++;
-        //                 }
-        //             }
-        //             else if (palavraemArray[i] is null)
-        //             {
-        //                 palavraemArray[i] = "_ ";
-        //             }
+                    }
                     
-        //         }
+                palavrasAdivinhadas.Add(digitos);
+                }
 
-        //     }
-        //     foreach(string letras in palavraemArray)
-        //     {
-        //         Console.WriteLine(letras);
-        //     }
-        //     Console.WriteLine();
-        //     if(erros == 7)
-        //     {
-        //         //DesenhodaForca();
-        //         Console.WriteLine("você foi enforcado!");
-        //     }
-        //     else if (verifica == palavraemArray.Length)
-        //     {
-        //         Console.WriteLine("Você encontrou a palavra!");
-        //     }
-            
-        // }
+                if(!palavra.Contains(digitos)){
+                    Console.WriteLine("Letra não existe na palavra");
+                    tentativasErradas++;
+                    tentativasRestantes--;
+                }
+                
+                if(tentativasErradas == 8)
+                    {
+                        Console.Clear();
+                        DesenhodaForca(); // implementar
+                        Console.WriteLine("\n Você foi enforcado!\n");
+                    }
+
+        } while (tentativasRestantes != 0);
     }
-    private static void Tema()
-    {
-        Console.WriteLine("Dica de temas: ");
-        Console.WriteLine("- Filme");
-        Console.WriteLine("- Comida");
-        Console.WriteLine("- Jogo");
-        Console.WriteLine("- Lugar");
-        Console.WriteLine("- Profissão");
-        Console.WriteLine("Digite a palavra que deverá ser descoberta: ");
-    }
+
     private static void DesenhodaForca()
     {
-        
-        string[] desenhodaForca = new string[] 
+
+        string[] desenhodaForca = new string[]
         {
             "__________",
             "|        |",
@@ -168,6 +105,17 @@ public static class Forca
             "|",
           "IIIIII"
         };
-        
+
+    }
+
+    private static void Tema()
+    {
+        Console.WriteLine("Dica de temas: ");
+        Console.WriteLine("- Filme");
+        Console.WriteLine("- Comida");
+        Console.WriteLine("- Jogo");
+        Console.WriteLine("- Lugar");
+        Console.WriteLine("- Profissão");
+        Console.Write("Digite a palavra que deverá ser descoberta: ");
     }
 }

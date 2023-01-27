@@ -24,6 +24,11 @@ public class Menu : Jogador
                     case 1:
                         Console.Clear();
                         Console.WriteLine("#    JogodaVelha da velha    #\n");
+                        if (_jogador1 == null || _jogador2 == null)
+                        {
+                            throw new ArgumentNullException("jogador1 e jogador2 não podem ser nulos");
+                            TeladeCadastroeLogin();
+                        }
                         TicTacToe.JogodaVelha(_jogador1, _jogador2);
                         break;
                     case 2:                    
@@ -36,11 +41,14 @@ public class Menu : Jogador
                         Rank(_listaJogadores);
                         break;
                     case 5:
-                        Console.WriteLine("\n Até a próxima!");
+                        TeladeCadastroeLogin();
+                        break;
+                    case 6:
+                        Console.WriteLine("\n\tAté a próxima!");
                         break;
                 }                
 
-            } while (escolha != 5);
+            } while (escolha != 6);
         }
         private void TeladeCadastroeLogin() 
         { int escolha;
@@ -57,7 +65,8 @@ public class Menu : Jogador
                 Console.Write("Digite o nome de usuário que deseja ser conhecido: ");
                 Jogador jogador1 = new Jogador(); // jogador 1 será sempre o X no jogo da velha
                 jogador1.Nome = Console.ReadLine();
-                _listaJogadores.Add(jogador1);                
+                _listaJogadores.Add(jogador1);
+                _jogador1 = jogador1;            
                 Console.WriteLine("Por favor, digite a senha:");
                 jogador1.Password = Console.ReadLine();
                 string senhaArmazenada = jogador1.Password;
@@ -95,6 +104,7 @@ public class Menu : Jogador
                 Jogador jogador2 = new Jogador(); 
                 jogador2.Nome = Console.ReadLine();
                 _listaJogadores.Add(jogador2);
+                _jogador2 = jogador2;
                 Console.WriteLine("Por favor, digite a senha:");
                 jogador2.Password = Console.ReadLine();
                 string senhaArmazenada = jogador2.Password;
@@ -125,7 +135,8 @@ public class Menu : Jogador
             Console.WriteLine("2 - jogo da forca");
             Console.WriteLine("3 - batalha naval");
             Console.WriteLine("4 - ver o ranking");
-            Console.WriteLine("5 - Sair do hub");
+            Console.WriteLine("5 - Retornar para fazer cadastro ou logar como outro jogador");
+            Console.WriteLine("6 - Sair do hub");
             Console.Write("Digite a opção desejada: ");            
         }       
         static void Rank(List<Jogador> _listaJogadores)

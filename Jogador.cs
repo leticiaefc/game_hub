@@ -35,7 +35,7 @@ namespace GameHub
         public bool VerificarConta (string nome, string senha)
         {
             if (nome == Nome && senha == Password)
-            {
+            {                                
                 return true;
             }
             return false;           

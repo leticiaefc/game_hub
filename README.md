@@ -1,23 +1,32 @@
 #GAMEHUB
-Hello, word!
-//write some description
+
+Hello, world!
+ Este projeto de console consiste em um local onde pode-se jogar em console. 
+ Existe uma tela de cadastro e login para que os dados possam ser mantidos dentro de um ranking, onde seus nomes e pontuação persistem.
 // find the imaplace to refer
 
 # TIC-TAC-TOE
 
-In this game, two people, who play alternately, filling each of the spaces with their respective symbols. Each participant must use a symbol (X or O). 
+Neste jogo, duas pessoas que jogarãm alternadamente preenchendo os espaços vazios dentro de uma matriz 3x3 com seus respectivos símbolos; cada participante é identificado por X ou O.
+```cs
+__|__|__
+__|__|__
+  |  |
+  ```
+  dentro de cada espaço existirá números que a pessoa digitará no local que deseja adicionar o símbolo.
 
-## Rules
-* The first person to form a line with three identical symbols wins, whether horizontally, vertically or diagonally.
-* If neither player succeeds, it is considered a tie.
+<h5>Regras</h5>
 
-# FORK
+* A primeira pessoa que conseguir formar uma linha com os 3 símbolos iguais ganha, seja na horizontal vertical ou diagonal.
+* Caso nenhum dos jogadores consiga, é considerado um empate.
+
+# Jogo da forca
 //write about
 //write the rules
 
-## Rules
+<h5>Regras</h5>
 //description
 
-# Battleship
+# Batalha Naval
 
-## Rules
+<h5>Regras</h5>

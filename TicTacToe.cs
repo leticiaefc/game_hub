@@ -6,6 +6,7 @@ public static class TicTacToe
     
         public static void JogodaVelha(Jogador jogador1, Jogador jogador2)
         {
+            
             string simbolo = "X";
             int tentativas = 1;
             int soma = 1;
