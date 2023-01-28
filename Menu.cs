@@ -54,13 +54,13 @@ public class Menu : Jogador
         { int escolha;
             Console.WriteLine("\tBem vindos ao GameHub!");
             Console.WriteLine("\nJogador1, você é um novo usuário ou deseja realizar login?\n1 - Cadastro\n2 - Login");
-            escolha = int.Parse(Console.ReadLine());
-            while(escolha != 1 && escolha != 2)
+            char escolhaHub = char.Parse(Console.ReadLine());
+            while(escolhaHub != 1 && escolhaHub != 2 && char.IsLetter(escolhaHub))
             {
                 Console.WriteLine("Opção inválida, digite novamente");
-                escolha = int.Parse(Console.ReadLine());
+                escolhaHub = char.Parse(Console.ReadLine());
             }
-            if (escolha == 1)
+            if (escolhaHub == '1')
             {
                 Console.Write("Digite o nome de usuário que deseja ser conhecido: ");
                 Jogador jogador1 = new Jogador(); // jogador 1 será sempre o X no jogo da velha
@@ -92,13 +92,13 @@ public class Menu : Jogador
             Console.Clear();  
             Console.WriteLine("E quanto a você Jogador2?");
             Console.WriteLine("1 - Cadastro\n2 - Login");
-            escolha = int.Parse(Console.ReadLine());
-            while(escolha != 1 && escolha != 2)
+            char escolhaHub2 = char.Parse(Console.ReadLine());
+            while(escolhaHub2 != 1 && escolhaHub2 != 2 && char.IsLetter(escolhaHub2))
             {
                 Console.WriteLine("Opção inválida, digite novamente");
-                escolha = int.Parse(Console.ReadLine());
+                escolhaHub2= char.Parse(Console.ReadLine());
             }
-            if (escolha == 1)
+            if (escolhaHub2 == '1')
             {
                 Console.Write("Digite o nome de usuário que deseja ser conhecido: ");
                 Jogador jogador2 = new Jogador(); 
@@ -122,7 +122,7 @@ public class Menu : Jogador
                 {
                     if (player.VerificarConta(nome, senha))
                     {
-                        _jogador1 = player;
+                        _jogador2 = player;
                     }
 
                 }

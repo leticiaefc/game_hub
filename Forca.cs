@@ -5,8 +5,9 @@ public static class Forca
     public static void JogodaForca(Jogador jogador1, Jogador jogador2)
     {
         string palavra;
-        
+        int jogador = 1;
         Tema();
+        Console.Write($"Jogador[{jogador}] você escolhe a palavra que deverá ser descoberta.\n Palavra: ");
         palavra = Console.ReadLine();
 
         List<char> palavrasAdivinhadas = new List<char>();
@@ -31,7 +32,8 @@ public static class Forca
                 }
             }
                 
-        do {
+        while (tentativasRestantes != 0 && acertos != palavra.Length)
+        {
             Console.Clear();
 
                 for (int i = 0; i < palavra.Length; i++)
@@ -61,16 +63,18 @@ public static class Forca
                         if (letras[i] == digitos)
                         {
                         forca[i] = digitos;
-                        }
                         acertos++;
-                        if(acertos == palavra.Length)
+                        }                        
+                    }
+                    if(acertos == palavra.Length)
                         {
                         Console.Clear();
                         Console.WriteLine("\n Você venceu!\n");
+                        jogador1.AddVitoria();
+                        jogador2.AddVitoria();
+                        Pergunta(jogador1, jogador2);
                         break;
                         }
-
-                    }
                     
                 palavrasAdivinhadas.Add(digitos);
                 }
@@ -84,11 +88,13 @@ public static class Forca
                 if(tentativasErradas == 8)
                     {
                         Console.Clear();
-                        DesenhodaForca(); // implementar
-                        Console.WriteLine("\n Você foi enforcado!\n");
+                        jogador1.AddDerrota();
+                        jogador2.AddDerrota();
+                        DesenhodaForca();
+                        Pergunta(jogador1, jogador2);                        
                     }
 
-        } while (tentativasRestantes != 0);
+        }
     }
 
     private static void DesenhodaForca()
@@ -105,9 +111,13 @@ public static class Forca
             "|",
           "IIIIII"
         };
+        for (int i = 0; i < desenhodaForca.Length; i++)
+        {
+            Console.WriteLine(desenhodaForca[i]);
+        }
+        Console.WriteLine("\n Você foi enforcado!\n");   
 
     }
-
     private static void Tema()
     {
         Console.WriteLine("Dica de temas: ");
@@ -116,6 +126,30 @@ public static class Forca
         Console.WriteLine("- Jogo");
         Console.WriteLine("- Lugar");
         Console.WriteLine("- Profissão");
-        Console.Write("Digite a palavra que deverá ser descoberta: ");
     }
+    private static void Pergunta(Jogador jogador1, Jogador jogador2)
+    {
+        Console.WriteLine("Deseja jogar novamente?\n1-sim e 2- não");
+        string escolha = Console.ReadLine();
+        Console.WriteLine();
+        List<string> loop = new List<string>();
+        do
+        {   
+            loop.Add(escolha);
+            if (escolha == "1") {JogodaForca(jogador1, jogador2);}
+            if (escolha == "2") { break;}              
+            Console.Clear();
+        }while(!loop.Contains(escolha));
+    }
+    private static void ContadorPontuacao(Jogador jogador1, Jogador jogador2, int jogador)
+        {
+            if(jogador == 1) { 
+                        jogador1.AddVitoria();
+                        jogador2.AddDerrota();
+                    }                                        
+                    else{ 
+                        jogador2.AddVitoria();
+                        jogador1.AddDerrota();
+                    }
+        }
 }

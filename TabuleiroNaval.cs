@@ -26,21 +26,23 @@ public class TabuleiroNaval
         for (int barco = 0; barco < qtdBarcos; barco++)
             {
                 Console.WriteLine("Jogador 1");
-                Console.WriteLine("Digite a linha do barco " + barco);
+                Console.WriteLine("Digite de 0 a 7 a linha do barco " + barco);
                 int l = int.Parse(Console.ReadLine());
-                Console.WriteLine("Digite a coluna do barco " + barco);
+                Console.WriteLine("Digite de 0 a 7 a coluna do barco " + barco);
                 int c = int.Parse(Console.ReadLine());
-                matrizJogador1[l, c] = '?';                
+                matrizJogador1[l, c] = ' ';
+                Console.Clear();         
             }
         
         for (int barco = 0; barco < qtdBarcos; barco++)
             {
                 Console.WriteLine("Jogador 2");
-                Console.WriteLine("Digite  a linha do barco " + barco);
+                Console.WriteLine("Digite de 0 a 7 a linha do barco " + barco);
                 int l = int.Parse(Console.ReadLine());
-                Console.WriteLine("Digite  a coluna do barco " + barco);
+                Console.WriteLine("Digite de 0 a 7 a coluna do barco " + barco);
                 int c = int.Parse(Console.ReadLine());
-                matrizJogador2[l, c] = '?';
+                matrizJogador2[l, c] = ' ';
+                Console.Clear();
             } 
          
     }

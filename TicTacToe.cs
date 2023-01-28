@@ -128,7 +128,7 @@ public static class TicTacToe
                     }
         }
 
-         private static void Pergunta(Jogador jogador1, Jogador jogador2)
+        private static void Pergunta(Jogador jogador1, Jogador jogador2)
         { 
             Console.WriteLine("Deseja jogar novamente?\n1-sim e 2- não");
             string escolha = Console.ReadLine();
@@ -141,5 +141,6 @@ public static class TicTacToe
                 if (escolha == "2") { break;}
 
             } while(!loop.Contains(escolha)); //quero que funcione a pergunta continue até a pessoa digitar uma das duas escolhas
+            Console.Clear();
         }
     }
