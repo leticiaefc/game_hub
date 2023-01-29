@@ -9,6 +9,8 @@ public static class Forca
         Tema();
         Console.Write($"Jogador[{jogador}] você escolhe a palavra que deverá ser descoberta.\n Palavra: ");
         palavra = Console.ReadLine();
+        Console.Write("Escreva a dica: ");
+        string dica = Console.ReadLine();
 
         List<char> palavrasAdivinhadas = new List<char>();
 
@@ -41,7 +43,7 @@ public static class Forca
                     Console.Write(forca[i] + " ");
                 }
 
-            Console.WriteLine($"Tentativas restantes: {tentativasRestantes}");
+            Console.WriteLine($"Tentativas restantes: {tentativasRestantes} \t {dica}");
             Console.WriteLine("\n\n\nDigite uma letra");
             digitos = Console.ReadLine()[0];
 
@@ -70,7 +72,7 @@ public static class Forca
                         {
                         Console.Clear();
                         Console.WriteLine("\n Você venceu!\n");
-                        jogador1.AddVitoria();
+                        jogador1.AddDerrota();
                         jogador2.AddVitoria();
                         Pergunta(jogador1, jogador2);
                         break;
@@ -88,7 +90,7 @@ public static class Forca
                 if(tentativasErradas == 8)
                     {
                         Console.Clear();
-                        jogador1.AddDerrota();
+                        jogador1.AddVitoria();
                         jogador2.AddDerrota();
                         DesenhodaForca();
                         Pergunta(jogador1, jogador2);                        

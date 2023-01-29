@@ -4,14 +4,16 @@ using GameHub;
 public class Menu : Jogador
     {         
     private List<Jogador> _listaJogadores; 
-    private List<string> _senha;
-    private  Jogador? _jogador1;
-    private  Jogador? _jogador2;
+    
+    private  Jogador _jogador1;
+    private  Jogador _jogador2;
     public Menu(){
         _listaJogadores = new List<Jogador>();
     }
     public void Tela()
         {
+            Program.LerArquivoJsondeJogadores("jogadores.json");
+
             int escolha;
             TeladeCadastroeLogin();
             do
@@ -26,8 +28,9 @@ public class Menu : Jogador
                         Console.WriteLine("#    JogodaVelha da velha    #\n");
                         if (_jogador1 == null || _jogador2 == null)
                         {
-                            throw new ArgumentNullException("jogador1 e jogador2 não podem ser nulos");
-                            TeladeCadastroeLogin();
+                            Console.WriteLine("jogador1 e jogador2 não podem ser nulos.\n Precione enter para retornar");
+                            Console.ReadKey();
+                            return;
                         }
                         TicTacToe.JogodaVelha(_jogador1, _jogador2);
                         break;
@@ -49,9 +52,10 @@ public class Menu : Jogador
                 }                
 
             } while (escolha != 6);
+            Program.AdicionarJogadores("jogadores.json", _listaJogadores);
         }
         private void TeladeCadastroeLogin() 
-        { int escolha;
+        {
             Console.WriteLine("\tBem vindos ao GameHub!");
             Console.WriteLine("\nJogador1, você é um novo usuário ou deseja realizar login?\n1 - Cadastro\n2 - Login");
             char escolhaHub = char.Parse(Console.ReadLine());

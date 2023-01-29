@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "kd9H4oMyINVYgvlZ9rSmGaXLhjWwKVAiUt+Eu4STz471zpYFrm5W5OsCFwShuy8bXi8/PAQFRX8mWqJotk4YCQ==",
+  "dgSpecHash": "UK+cx5bKBDgil9XnHX3AjswWOFvAtYn5Vy9csTZPa4gQvFxHHOd3f9TncCZ4Rk0zEX7VrCfc6jtIi/9PZxxoNw==",
   "success": true,
-  "projectFilePath": "C:\\Aula\\projeto_dois_ima_jogodavelha\\gamehub.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Aula\\projeto_game_hub\\gamehub.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\letic\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

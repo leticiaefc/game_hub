@@ -9,6 +9,8 @@ namespace GameHub
         public int Draw { get; private set; }
         public string Password { get; set; }
 
+        public static List<Jogador> AllPlayers { get; set; } = new List<Jogador>();
+
         public Jogador(string nome, int vitorias, int derrotas, int empates, string senha)
         {
             Nome = nome;
@@ -39,7 +41,14 @@ namespace GameHub
                 return true;
             }
             return false;
-        }        
-        
+        }
+
+        internal static void Add(Jogador player)
+        {
+            if (player != null)
+            {
+                AllPlayers.Add(player);
+            }
+        }
     }
 }
