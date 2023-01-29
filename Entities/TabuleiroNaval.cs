@@ -1,5 +1,5 @@
 using GameHub;
-
+namespace GameHub.Entities;
 public class TabuleiroNaval
 {
     private char[,] matrizJogador1;

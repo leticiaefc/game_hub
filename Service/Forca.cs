@@ -1,5 +1,6 @@
 using GameHub;
-namespace GameHub.Entities{
+using GameHub.Entities;
+namespace GameHub.Service{
 public static class Forca
 {
     public static void JogodaForca(Jogador jogador1, Jogador jogador2)

@@ -1,6 +1,7 @@
 
 using GameHub;
-namespace GameHub.Entities;
+using GameHub.Entities;
+namespace GameHub.Service;
 public static class TicTacToe
 {
     
