@@ -1,5 +1,5 @@
 using System.Text.Json;
-namespace GameHub
+namespace GameHub.Entities
 {
     public class Jogador 
     {        

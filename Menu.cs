@@ -1,6 +1,6 @@
 using System.Collections;
 using GameHub;
-
+using GameHub.Entities;
 public class Menu : Jogador
     {         
     private List<Jogador> _listaJogadores; 
