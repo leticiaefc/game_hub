@@ -1,4 +1,3 @@
-
 using GameHub;
 using GameHub.Entities;
 namespace GameHub.Service;
@@ -7,14 +6,12 @@ public static class TicTacToe
     
         public static void JogodaVelha(Jogador jogador1, Jogador jogador2)
         {
-            
             string simbolo = "X";
             int tentativas = 1;
             int soma = 1;
             List<string> indexNumeros = new List<string>();            
             string[,] matriz = new string[3,3]; 
             List<int> indexJogador = new List<int>();
-            
             
             for (int i = 0; i < matriz.GetLength(0); i++)
             {
@@ -30,7 +27,9 @@ public static class TicTacToe
             {
                 for (int j = 0; j < matriz.GetLength(1); j++)
                 {
-                    Console.Write($"[{matriz[i,j]}] ");
+
+                    Console.Write($"|_{matriz[i,j]}_| ");
+
                 }
                 Console.WriteLine();
             }
@@ -58,7 +57,7 @@ public static class TicTacToe
                 {
                     for ( int j = 0; j < matriz.GetLength(1);j++)
                     {
-                        Console.Write($"[{matriz[i,j]}] ");
+                        Console.Write($"|_{matriz[i,j]}_| ");
                     }
                     Console.WriteLine();
                 } // imprimindo a matriz
@@ -67,6 +66,7 @@ public static class TicTacToe
                 {
                     Console.WriteLine($"\n{simbolo} venceu!\n");
                     ContadorPontuacao(jogador1, jogador2, simbolo);
+                    Program.AdicionarJogadores("jogadores.json");
                     Pergunta(jogador1, jogador2);
                     break;
                 }   // diagonais
@@ -74,6 +74,7 @@ public static class TicTacToe
                 {
                     Console.WriteLine($"\n{simbolo} venceu!\n");
                     ContadorPontuacao(jogador1, jogador2, simbolo);
+                    Program.AdicionarJogadores("jogadores.json");
                     Pergunta(jogador1, jogador2);
                     break;
                 } //horizontais
@@ -81,6 +82,7 @@ public static class TicTacToe
                 {
                     Console.WriteLine($"\n{simbolo} venceu!\n");
                     ContadorPontuacao(jogador1, jogador2, simbolo);
+                    Program.AdicionarJogadores("jogadores.json");
                     Pergunta(jogador1, jogador2); 
                     break;
                 } // verticais
@@ -110,6 +112,7 @@ public static class TicTacToe
                     Console.WriteLine("\nDeu velha!\n");
                     jogador1.AddEmpate();
                     jogador2.AddEmpate();
+                    Program.AdicionarJogadores("jogadores.json");
                     Pergunta(jogador1, jogador2);            
                 }                 
 

@@ -40,7 +40,6 @@ public static class BatalhaNaval
                     Console.WriteLine("Player 1 ACERTOU UM BARCO!");
                     Console.WriteLine("Pontuação = " + pontosJogador1);
                 }
-                //else{Console.WriteLine("Player 1 ERROU!");}
                 }
                 else{
                 if (tabuleiro.MatrizJogador1[l, c] == '\0')
@@ -50,7 +49,6 @@ public static class BatalhaNaval
                     Console.WriteLine("Player 2 ACERTOU UM BARCO!");
                     Console.WriteLine("Pontuação = " + pontosJogador2);
                 }
-                //else{Console.WriteLine("Player 2 ERROU!");}
                 }
                 
             
@@ -63,6 +61,7 @@ public static class BatalhaNaval
             Console.WriteLine("Parabéns Jogador1!");
             jogador1.AddVitoria();
             jogador2.AddDerrota();
+            Program.AdicionarJogadores("jogadores.json");
             Pergunta(jogador1, jogador2);
         }
         else if (pontosJogador1 < pontosJogador2)
@@ -70,6 +69,7 @@ public static class BatalhaNaval
             Console.WriteLine("Parabéns Jogador2!");
             jogador2.AddVitoria();
             jogador1.AddDerrota();
+            Program.AdicionarJogadores("jogadores.json");
             Pergunta(jogador1, jogador2);
         }
         else
@@ -77,6 +77,7 @@ public static class BatalhaNaval
             Console.WriteLine("Empate!");
             jogador1.AddEmpate();
             jogador2.AddEmpate();
+            Program.AdicionarJogadores("jogadores.json");
             Pergunta(jogador1, jogador2);
         }
     }

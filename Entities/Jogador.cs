@@ -8,15 +8,18 @@ namespace GameHub.Entities
         public int Lose { get; private set; }
         public int Draw { get; private set; }
         public string Password { get; set; }
-
-        public static List<Jogador> AllPlayers { get; set; } = new List<Jogador>();
-
+        public static List<Jogador> ListaJogadores { get; set; }
         public Jogador(string nome, int vitorias, int derrotas, int empates, string senha)
         {
             Nome = nome;
             Win = vitorias;
             Lose = derrotas;
             Draw = empates;
+            Password = senha;
+        }
+        public Jogador(string nome, string senha)
+        {
+            Nome = nome;
             Password = senha;
         }
         public Jogador()
@@ -31,9 +34,6 @@ namespace GameHub.Entities
         public void AddEmpate() {
             Draw++;
         }
-        // public void Senha(string senha) {
-        //     Password = senha;
-        // }
         public bool VerificarConta (string nome, string senha)
         {
             if (nome == Nome && senha == Password)
@@ -42,12 +42,11 @@ namespace GameHub.Entities
             }
             return false;
         }
-
         internal static void Add(Jogador player)
         {
             if (player != null)
             {
-                AllPlayers.Add(player);
+                ListaJogadores.Add(player);
             }
         }
     }

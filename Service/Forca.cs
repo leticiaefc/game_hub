@@ -75,6 +75,7 @@ public static class Forca
                         Console.WriteLine("\n Você venceu!\n");
                         jogador1.AddDerrota();
                         jogador2.AddVitoria();
+                         Program.AdicionarJogadores("jogadores.json");
                         Pergunta(jogador1, jogador2);
                         break;
                         }
@@ -93,6 +94,7 @@ public static class Forca
                         Console.Clear();
                         jogador1.AddVitoria();
                         jogador2.AddDerrota();
+                         Program.AdicionarJogadores("jogadores.json");
                         DesenhodaForca();
                         Pergunta(jogador1, jogador2);                        
                     }

@@ -23,12 +23,12 @@ namespace GameHub {
             else
             {
                 string jsonString = File.ReadAllText(filename);
-                Jogador.AllPlayers = JsonConvert.DeserializeObject<List<Jogador>>(jsonString);                            
+                Jogador.ListaJogadores = JsonConvert.DeserializeObject<List<Jogador>>(jsonString);                            
             }
         }
-        public static void AdicionarJogadores(string filename, List<Jogador> jogadores)
+        public static void AdicionarJogadores(string filename)
         {
-            string jsonString = JsonConvert.SerializeObject(jogadores);
+            string jsonString = JsonConvert.SerializeObject(Jogador.ListaJogadores);
             File.WriteAllText(filename, jsonString);
         }
 

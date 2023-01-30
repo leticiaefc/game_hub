@@ -4,14 +4,9 @@ using GameHub.Entities;
 using GameHub.Service;
 namespace GameHub.View;
 public class Menu : Jogador
-    {         
-    private List<Jogador> _listaJogadores; 
-    
+    {
     private  Jogador _jogador1;
     private  Jogador _jogador2;
-    public Menu(){
-        _listaJogadores = new List<Jogador>();
-    }
     public void Tela()
         {
             Program.LerArquivoJsondeJogadores("jogadores.json");
@@ -43,7 +38,7 @@ public class Menu : Jogador
                         BatalhaNaval.JogoBatalha(_jogador1, _jogador2);
                         break;
                     case 4:
-                        Rank(_listaJogadores);
+                        Rank(ListaJogadores);
                         break;
                     case 5:
                         TeladeCadastroeLogin();
@@ -54,7 +49,7 @@ public class Menu : Jogador
                 }                
 
             } while (escolha != 6);
-            Program.AdicionarJogadores("jogadores.json", _listaJogadores);
+            
         }
         private void TeladeCadastroeLogin() 
         {
@@ -69,15 +64,14 @@ public class Menu : Jogador
             if (escolhaHub == '1')
             {
                 Console.Write("Digite o nome de usuário que deseja ser conhecido: ");
-                Jogador jogador1 = new Jogador(); // jogador 1 será sempre o X no jogo da velha
-                jogador1.Nome = Console.ReadLine();
-                _listaJogadores.Add(jogador1);
-                _jogador1 = jogador1;            
+                string j1 = Console.ReadLine();
                 Console.WriteLine("Por favor, digite a senha:");
-                jogador1.Password = Console.ReadLine();
-                string senhaArmazenada = jogador1.Password;
-                //_senha(senhaArmazenada);
+                string senha = Console.ReadLine();
+                Jogador jogador1 = new Jogador(j1, senha); // jogador 1 será sempre o X no jogo da velha
+                ListaJogadores.Add(jogador1);
+                _jogador1 = jogador1;
                 Console.WriteLine("Senha salva com sucesso!");
+                Program.AdicionarJogadores("jogadores.json");
             }
             else 
             {
@@ -86,13 +80,12 @@ public class Menu : Jogador
                 Console.WriteLine("Digite a senha");
                 string senha = Console.ReadLine();
 
-                foreach( Jogador player in _listaJogadores)
+                foreach( Jogador player in ListaJogadores)
                 {
                     if (player.VerificarConta(nome, senha))
                     {
                         _jogador1 = player;
                     }
-
                 }
             }
             Console.Clear();  
@@ -107,15 +100,14 @@ public class Menu : Jogador
             if (escolhaHub2 == '1')
             {
                 Console.Write("Digite o nome de usuário que deseja ser conhecido: ");
-                Jogador jogador2 = new Jogador(); 
-                jogador2.Nome = Console.ReadLine();
-                _listaJogadores.Add(jogador2);
-                _jogador2 = jogador2;
+                string j2 = Console.ReadLine();
                 Console.WriteLine("Por favor, digite a senha:");
-                jogador2.Password = Console.ReadLine();
-                string senhaArmazenada = jogador2.Password;
-                //_senha(senhaArmazenada);
-                Console.WriteLine("Senha salva com sucesso!");                
+                string senha = Console.ReadLine();
+                Jogador jogador2 = new Jogador(j2, senha);
+                ListaJogadores.Add(jogador2);
+                _jogador2 = jogador2;
+                Console.WriteLine("Senha salva com sucesso!");
+                Program.AdicionarJogadores("jogadores.json");              
             }
             else 
             {
@@ -124,7 +116,7 @@ public class Menu : Jogador
                 Console.WriteLine("Digite a senha");
                 string senha = Console.ReadLine();
 
-                foreach( Jogador player in _listaJogadores)
+                foreach( Jogador player in ListaJogadores)
                 {
                     if (player.VerificarConta(nome, senha))
                     {
@@ -145,13 +137,13 @@ public class Menu : Jogador
             Console.WriteLine("6 - Sair do hub");
             Console.Write("Digite a opção desejada: ");            
         }       
-        static void Rank(List<Jogador> _listaJogadores)
+        static void Rank(List<Jogador> ListaJogadores)
         {           
             Console.Clear();
             Console.WriteLine("Nome - vitórias - derrotas - empates\n");
 
-            _listaJogadores = _listaJogadores.OrderByDescending(x => x.Win).ToList();
-            foreach (var jogador in _listaJogadores)
+            ListaJogadores = ListaJogadores.OrderByDescending(x => x.Win).ToList();
+            foreach (var jogador in ListaJogadores)
             {
                 Console.WriteLine(jogador.Nome + "   " + jogador.Win + " : " + jogador.Lose + " : " + jogador.Draw);
             }
